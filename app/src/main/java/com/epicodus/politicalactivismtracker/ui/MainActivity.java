@@ -11,8 +11,11 @@ import android.widget.Toast;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
 
     private DatabaseReference mActionTitleReference;
+    private ValueEventListener mActionTitleReferenceListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .getInstance()
                 .getReference()
                 .child(Constants.FIREBASE_CHILD_ACTION_TITLE);
+
+        mActionTitleReferenceListener = mActionTitleReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot titleSnapShot : dataSnapshot.getChildren()) {
+                    String title = titleSnapShot.getValue().toString();
+                    Log.d("Title updated", "title: " + title);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -77,4 +96,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void saveActionTitleToFirebase(String title) {
         mActionTitleReference.push().setValue(title);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mActionTitleReference.removeEventListener(mActionTitleReferenceListener);
+    }
+
+
 }
