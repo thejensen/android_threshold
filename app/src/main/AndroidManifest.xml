@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ActivismActivity"></activity>
+        <activity android:name=".ui.ActivismActivity" />
+        <activity android:name=".ui.AddedActionsActivity"></activity>
     </application>
 
 </manifest>

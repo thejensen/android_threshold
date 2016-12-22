@@ -41,14 +41,14 @@ public class FirebaseActionViewHolder extends RecyclerView.ViewHolder implements
 
     public void bindRestaurant(Action action) {
         TextView actionNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
-        TextView actionLocationTextView = (TextView) mView.findViewById(R.id.actionLocationTextView);
-        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.actionLinkTextView);
-        TextView actionDateTextView = (TextView) mView.findViewById(R.id.actionDateTextView);
-        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.actionDescriptionTextView);
+        TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
+        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
+        TextView actionDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
+        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.descriptionTextView);
         ImageView actionImageView = (ImageView) mView.findViewById(R.id.actionImageView);
-        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.actionCauseTextView);
-        TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionActionTextView);
-        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.actionPriceTextView);
+        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.causeTextView);
+        TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
+        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
 
         Picasso.with(mContext)
                 .load(action.getImageUrl())
@@ -80,9 +80,9 @@ public class FirebaseActionViewHolder extends RecyclerView.ViewHolder implements
 
                 int itemPosition = getLayoutPosition();
 
-                Intent intent = new Intent(mContext, SavedActionActivity.class);
+                Intent intent = new Intent(mContext, AddedActionsActivity.class);
                 intent.putExtra("position", itemPosition + "");
-                intent.putExtra("restaurants", Parcels.wrap(actions));
+                intent.putExtra("actions", Parcels.wrap(actions));
 
                 mContext.startActivity(intent);
             }
