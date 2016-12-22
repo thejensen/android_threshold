@@ -16,7 +16,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/inputLocationEditText"
         android:layout_below="@+id/inputDateEditText"
@@ -30,7 +29,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/inputLinkEditText"
         android:layout_below="@+id/inputLocationEditText"
@@ -44,7 +42,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/inputImageUrlEditText"
         android:layout_below="@+id/inputLinkEditText"
@@ -58,7 +55,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/inputCauseEditText"
         android:layout_below="@+id/inputImageUrlEditText"
@@ -72,7 +68,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/inputActionTypeEditText"
         android:layout_below="@+id/inputCauseEditText"
@@ -86,7 +81,6 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:ems="10"
         android:layout_below="@+id/inputActionTypeEditText"
         android:layout_alignLeft="@+id/inputActionTypeEditText"
