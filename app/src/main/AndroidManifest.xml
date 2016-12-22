@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".ui.ActionDetailActivity" />
         <activity android:name=".ui.AddedActionsActivity" />
-        <activity android:name=".ui.CreateAccountActivity"></activity>
+        <activity android:name=".ui.CreateAccountActivity" />
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
