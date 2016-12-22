@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actionRef.push().setValue(action);
             Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(MainActivity.this, AddedActionsActivity.class);
+            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
             startActivity(intent);
         }
         if (v == mFindActionsButton) {
-            Intent intent = new Intent(MainActivity.this, AddedActionsActivity.class);
+            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
             startActivity(intent);
         }
     }

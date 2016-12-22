@@ -15,7 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class AddedActionsActivity extends AppCompatActivity {
+public class ActionListActivity extends AppCompatActivity {
     private DatabaseReference mActionReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
@@ -24,7 +24,7 @@ public class AddedActionsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_added_actions);
+        setContentView(R.layout.activity_list_action);
         ButterKnife.bind(this);
 
         mActionReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
