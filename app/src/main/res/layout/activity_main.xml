@@ -123,16 +123,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text="Add New Action Item for the Community!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textSize="18sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/mySavedActionsButton"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -181,5 +171,14 @@
         android:layout_below="@+id/inputDateEditText"
         android:layout_alignLeft="@+id/inputDateEditText"
         android:layout_alignStart="@+id/inputDateEditText" />
+
+    <TextView
+        android:text="Add New Action Item for the Community!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="18sp"
+        android:layout_below="@+id/mySavedActionsButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -76,23 +76,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String description = mInputDescriptionEditText.getText().toString();
             validateFields.add(description);
 
-            for (int i = 0; i < validateFields.size(); i++) {
-                if (validateFields.get(i).equals("")) {
-                    Toast.makeText(MainActivity.this, "Please fill out all fields to submit a new action item. Psst! N/A is also acceptable.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
 
-                    DatabaseReference actionRef = FirebaseDatabase
-                            .getInstance()
-                            .getReference(Constants.FIREBASE_CHILD_ACTIONS);
-                    actionRef.push().setValue(action);
-                    Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
+            Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
 
-                    Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
-                    startActivity(intent);
-                }
-            }
+            DatabaseReference actionRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_ACTIONS);
+            actionRef.push().setValue(action);
+            Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
+            startActivity(intent);
+
         }
 
         if (v == mFindActionsButton) {
