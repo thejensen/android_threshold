@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
         }
         if (v == mFindActionsButton) {
-            Intent intent = new Intent(MainActivity.this, ActivismActivity.class);
+            Intent intent = new Intent(MainActivity.this, ActionActivity.class);
             startActivity(intent);
         }
     }
