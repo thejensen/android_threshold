@@ -1,7 +1,9 @@
-package com.epicodus.politicalactivismtracker;
+package com.epicodus.politicalactivismtracker.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.epicodus.politicalactivismtracker.R;
 
 public class MainActivity extends AppCompatActivity {
 

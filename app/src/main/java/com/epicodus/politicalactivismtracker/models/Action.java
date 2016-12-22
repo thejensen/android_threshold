@@ -1,4 +1,4 @@
-package com.epicodus.politicalactivismtracker;
+package com.epicodus.politicalactivismtracker.models;
 
 /**
  * Created by jensese on 12/21/16.
@@ -16,7 +16,7 @@ public class Action {
     private int mPrice;
     private String mIDidThis;
 
-    public Action(String mName, String mLocation, String mLink, String mDate, String mDescription, int mResourceIds, String mCategoryCause, String mCategoryAction, int mPrice, String mIDidThis, int mImpactAssessment) {
+    public Action(String mName, String mLocation, String mLink, String mDate, String mDescription, int mResourceIds, String mCategoryCause, String mCategoryAction, int mPrice) {
         this.mName = mName;
         this.mLocation = mLocation;
         this.mLink = mLink;
