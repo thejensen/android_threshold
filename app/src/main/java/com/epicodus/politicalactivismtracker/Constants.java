@@ -5,5 +5,5 @@ package com.epicodus.politicalactivismtracker;
  */
 
 public class Constants {
-    public static final String FIREBASE_CHILD_ACTION_TITLE = "Title";
+    public static final String FIREBASE_CHILD_ACTIONS = "actions";
 }

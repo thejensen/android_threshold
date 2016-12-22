@@ -3,7 +3,6 @@ package com.epicodus.politicalactivismtracker.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +10,7 @@ import android.widget.Toast;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.epicodus.politicalactivismtracker.models.Action;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
@@ -41,26 +39,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        mActionTitleReference = FirebaseDatabase
-                .getInstance()
-                .getReference()
-                .child(Constants.FIREBASE_CHILD_ACTION_TITLE);
-
-        mActionTitleReferenceListener = mActionTitleReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot titleSnapShot : dataSnapshot.getChildren()) {
-                    String title = titleSnapShot.getValue().toString();
-                    Log.d("Title updated", "title: " + title);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -82,26 +60,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String actionType = mInputActionTypeEditText.getText().toString();
             String price = mInputPriceEditText.getText().toString();
             String description = mInputDescriptionEditText.getText().toString();
-            Log.v(TAG, "Location is: " + location);
 
-            saveActionTitleToFirebase(title);
-            Toast.makeText(MainActivity.this, "OMG WHY", Toast.LENGTH_SHORT).show();
+            Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
+
+            DatabaseReference actionRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_ACTIONS);
+            actionRef.push().setValue(action);
+            Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
         }
         if (v == mFindActionsButton) {
             Intent intent = new Intent(MainActivity.this, ActivismActivity.class);
             startActivity(intent);
         }
     }
-
-    public void saveActionTitleToFirebase(String title) {
-        mActionTitleReference.push().setValue(title);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mActionTitleReference.removeEventListener(mActionTitleReferenceListener);
-    }
-
-
 }

@@ -10,16 +10,16 @@ public class Action {
     private String link;
     private String date;
     private String description;
-    private int imageUrl;
+    private String imageUrl;
     private String categoryCause;
     private String categoryAction;
-    private int price;
+    private String price;
     private String iDidThis;
 
     public Action() {
     }
 
-    public Action(String name, String location, String link, String date, String description, int imageUrl, String categoryCause, String categoryAction, int price) {
+    public Action(String name, String location, String link, String date, String description, String imageUrl, String categoryCause, String categoryAction, String price) {
         this.name = name;
         this.location = location;
         this.link = link;
@@ -51,7 +51,7 @@ public class Action {
         return description;
     }
 
-    public int getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
@@ -63,7 +63,7 @@ public class Action {
         return categoryAction;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
