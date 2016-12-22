@@ -39,7 +39,7 @@ public class FirebaseSavedActionViewHolder extends RecyclerView.ViewHolder imple
         itemView.setOnClickListener(this);
     }
 
-    public void bindSaveAction(Action action) {
+    public void bindAction(Action action) {
         TextView actionNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
         TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
 //        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
