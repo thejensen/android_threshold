@@ -64,6 +64,7 @@ public class FirebaseActionViewHolder extends RecyclerView.ViewHolder implements
 //        actionCauseTextView.setText(action.getCategoryCause());
 //        actionActionTextView.setText(action.getCategoryAction());
 //        actionPriceTextView.setText(action.getPrice());
+
     }
 
     @Override

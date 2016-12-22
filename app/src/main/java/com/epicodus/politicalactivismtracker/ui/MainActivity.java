@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             for (int i = 0; i < validateFields.size(); i++) {
                 if (validateFields.get(i).equals("")) {
-                    Toast.makeText(MainActivity.this, "Please fill out all fields to submit a new action item. Psst! N/A is also acceptable.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Please fill out all fields to submit a new action item. Psst! N/A is also acceptable.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
+
         if (v == mFindActionsButton) {
             Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
             startActivity(intent);

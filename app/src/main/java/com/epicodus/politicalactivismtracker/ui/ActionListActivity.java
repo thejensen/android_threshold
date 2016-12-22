@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
@@ -18,14 +20,16 @@ import butterknife.ButterKnife;
 public class ActionListActivity extends AppCompatActivity {
     private DatabaseReference mActionReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
-
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_action);
         ButterKnife.bind(this);
+
+        mProgressBar.setVisibility(View.VISIBLE);
 
         mActionReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         setUpFirebaseAdapter();
@@ -36,6 +40,7 @@ public class ActionListActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(FirebaseActionViewHolder viewHolder, Action model, int position) {
                 viewHolder.bindAction(model);
+                mProgressBar.setVisibility(View.GONE);
             }
         };
         mRecyclerView.setHasFixedSize(true);
