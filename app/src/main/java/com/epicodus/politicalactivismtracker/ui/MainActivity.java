@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.inputPriceEditText) EditText mInputPriceEditText;
     @Bind(R.id.inputDescriptionEditText) EditText mInputDescriptionEditText;
     @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
+    @Bind(R.id.mySavedActionsButton) Button mMySavedActionsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFindActionsButton.setOnClickListener(this);
         mSubmitNewActionInputButton.setOnClickListener(this);
+        mMySavedActionsButton.setOnClickListener(this);
     }
 
     @Override
@@ -95,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v == mFindActionsButton) {
             Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
+            startActivity(intent);
+        }
+        if (v == mMySavedActionsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedActionListActivity.class);
             startActivity(intent);
         }
     }
