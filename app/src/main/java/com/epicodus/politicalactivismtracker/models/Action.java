@@ -5,66 +5,69 @@ package com.epicodus.politicalactivismtracker.models;
  */
 
 public class Action {
-    private String mName;
-    private String mLocation;
-    private String mLink;
-    private String mDate;
-    private String mDescription;
-    private int mResourceIds;
-    private String mCategoryCause;
-    private String mCategoryAction;
-    private int mPrice;
-    private String mIDidThis;
+    private String name;
+    private String location;
+    private String link;
+    private String date;
+    private String description;
+    private int imageUrl;
+    private String categoryCause;
+    private String categoryAction;
+    private int price;
+    private String iDidThis;
 
-    public Action(String mName, String mLocation, String mLink, String mDate, String mDescription, int mResourceIds, String mCategoryCause, String mCategoryAction, int mPrice) {
-        this.mName = mName;
-        this.mLocation = mLocation;
-        this.mLink = mLink;
-        this.mDate = mDate;
-        this.mDescription = mDescription;
-        this.mResourceIds = mResourceIds;
-        this.mCategoryCause = mCategoryCause;
-        this.mCategoryAction = mCategoryAction;
-        this.mPrice = mPrice;
+    public Action() {
+    }
+
+    public Action(String name, String location, String link, String date, String description, int imageUrl, String categoryCause, String categoryAction, int price) {
+        this.name = name;
+        this.location = location;
+        this.link = link;
+        this.date = date;
+        this.description = description;
+        this.imageUrl = imageUrl;
+        this.categoryCause = categoryCause;
+        this.categoryAction = categoryAction;
+        this.price = price;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public String getLocation() {
-        return mLocation;
+        return location;
     }
 
     public String getLink() {
-        return mLink;
+        return link;
     }
 
     public String getDate() {
-        return mDate;
+        return date;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
-    public int getResourceIds() {
-        return mResourceIds;
+    public int getImageUrl() {
+        return imageUrl;
     }
 
     public String getCategoryCause() {
-        return mCategoryCause;
+        return categoryCause;
     }
 
     public String getCategoryAction() {
-        return mCategoryAction;
+        return categoryAction;
     }
 
     public int getPrice() {
-        return mPrice;
+        return price;
     }
 
     public String getIDidThis() {
-        return mIDidThis;
+        return iDidThis;
     }
 }
