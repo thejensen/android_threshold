@@ -41,14 +41,14 @@ public class FirebaseActionViewHolder extends RecyclerView.ViewHolder implements
 
     public void bindRestaurant(Action action) {
         TextView actionNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
-        TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
-        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
-        TextView actionDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
-        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.descriptionTextView);
+//        TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
+//        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
+//        TextView actionDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
+//        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.descriptionTextView);
         ImageView actionImageView = (ImageView) mView.findViewById(R.id.actionImageView);
-        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.causeTextView);
-        TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
-        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
+//        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.causeTextView);
+//        TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
+//        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
 
         Picasso.with(mContext)
                 .load(action.getImageUrl())
@@ -57,13 +57,13 @@ public class FirebaseActionViewHolder extends RecyclerView.ViewHolder implements
                 .into(actionImageView);
 
         actionNameTextView.setText(action.getName());
-        actionLocationTextView.setText(action.getLocation());
-        actionLinkTextView.setText(action.getLink());
-        actionDateTextView.setText(action.getDate());
-        actionDescriptionTextView.setText(action.getDescription());
-        actionCauseTextView.setText(action.getCategoryCause());
-        actionActionTextView.setText(action.getCategoryAction());
-        actionPriceTextView.setText(action.getPrice());
+//        actionLocationTextView.setText(action.getLocation());
+//        actionLinkTextView.setText(action.getLink());
+//        actionDateTextView.setText(action.getDate());
+//        actionDescriptionTextView.setText(action.getDescription());
+//        actionCauseTextView.setText(action.getCategoryCause());
+//        actionActionTextView.setText(action.getCategoryAction());
+//        actionPriceTextView.setText(action.getPrice());
     }
 
     @Override
