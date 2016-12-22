@@ -11,7 +11,6 @@
         <activity android:name=".ui.MainActivity">
         </activity>
         <activity android:name=".ui.ActionDetailActivity" />
-        <activity android:name=".ui.AddedActionsActivity" />
         <activity android:name=".ui.CreateAccountActivity" />
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
@@ -20,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ActionListActivity"></activity>
     </application>
 
 </manifest>

@@ -103,7 +103,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textSize="14sp"
-        android:lines="3" />
+        android:lines="3"
+        android:textAlignment="textStart"
+        android:singleLine="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -113,18 +115,6 @@
         android:hint="Date (01/01/2017)"
         android:textSize="14sp"
         android:layout_below="@+id/inputTitleEditText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputTitleEditText"
-        android:hint="Title"
-        android:textSize="14sp"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -152,15 +142,26 @@
         android:layout_below="@+id/findActionsButton"
         android:layout_centerHorizontal="true" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/inputTitleEditText"
+        android:hint="Title"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
     <Button
         android:text="Submit New Action"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:padding="6dp"
         android:id="@+id/submitNewActionInputButton"
-        android:layout_below="@+id/inputDescriptionEditText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
