@@ -118,30 +118,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Act Now!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:id="@+id/findActionsButton"
-        android:background="@android:color/transparent"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="42dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Or... Add a New Action Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textSize="18sp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/findActionsButton"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -162,6 +138,40 @@
         android:padding="6dp"
         android:id="@+id/submitNewActionInputButton"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Add New Action Item for the Community!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="18sp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/mySavedActionsButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Act Now!"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:id="@+id/findActionsButton"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="My Action Log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mySavedActionsButton"
+        android:textSize="18sp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@+id/findActionsButton"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
