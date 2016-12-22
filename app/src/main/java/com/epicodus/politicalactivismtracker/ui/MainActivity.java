@@ -17,7 +17,8 @@ import com.epicodus.politicalactivismtracker.models.Action;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,9 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.inputDescriptionEditText) EditText mInputDescriptionEditText;
     @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
 
-    private DatabaseReference mActionTitleReference;
-    private ValueEventListener mActionTitleReferenceListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,26 +53,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mSubmitNewActionInputButton) {
+            ArrayList<String> validateFields = new ArrayList<>();
+
             String title = mInputTitleEditText.getText().toString();
+            validateFields.add(title);
             String date = mInputDateEditText.getText().toString();
+            validateFields.add(date);
             String location = mInputLocationEditText.getText().toString();
+            validateFields.add(location);
             String externalLink = mLinkEditText.getText().toString();
+            validateFields.add(externalLink);
             String image = mInputImageUrlEditText.getText().toString();
+            validateFields.add(image);
             String cause = mInputCauseEditText.getText().toString();
+            validateFields.add(cause);
             String actionType = mInputActionTypeEditText.getText().toString();
+            validateFields.add(actionType);
             String price = mInputPriceEditText.getText().toString();
+            validateFields.add(price);
             String description = mInputDescriptionEditText.getText().toString();
+            validateFields.add(description);
 
-            Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
+            for (int i = 0; i < validateFields.size(); i++) {
+                if (validateFields.get(i).equals("")) {
+                    Toast.makeText(MainActivity.this, "Please fill out all fields to submit a new action item. Psst! N/A is also acceptable.", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
 
-            DatabaseReference actionRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_ACTIONS);
-            actionRef.push().setValue(action);
-            Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
+                    DatabaseReference actionRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference(Constants.FIREBASE_CHILD_ACTIONS);
+                    actionRef.push().setValue(action);
+                    Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
-            startActivity(intent);
+                    Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
+                    startActivity(intent);
+                }
+            }
         }
         if (v == mFindActionsButton) {
             Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
