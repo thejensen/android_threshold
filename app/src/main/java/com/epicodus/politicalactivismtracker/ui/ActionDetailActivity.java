@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ActionDetailActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private ActionPagerAdapter adapterViewPager;
     ArrayList<Action> mActions = new ArrayList<>();

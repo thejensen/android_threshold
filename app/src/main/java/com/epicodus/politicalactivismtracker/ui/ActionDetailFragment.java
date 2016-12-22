@@ -63,7 +63,7 @@ public class ActionDetailFragment extends Fragment {
         mCauseLabel.setText(mAction.getCategoryCause());
         mActionCategoryLabel.setText(mAction.getCategoryAction());
 
-        return inflater.inflate(R.layout.fragment_action_detail, container, false);
+        return view;
     }
 
 }
