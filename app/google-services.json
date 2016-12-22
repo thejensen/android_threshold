@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "637729830664",
+    "firebase_url": "https://posts-45346.firebaseio.com",
+    "project_id": "posts-45346",
+    "storage_bucket": "posts-45346.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637729830664:android:37495ec33505c7df",
+        "android_client_info": {
+          "package_name": "com.epicodus.politicalactivismtracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637729830664-rgbvbn61as7cc2525de5u41kcksns85v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicodus.politicalactivismtracker",
+            "certificate_hash": "C3345B69F729B8B69404D31658BC3DAE5800307C"
+          }
+        },
+        {
+          "client_id": "637729830664-desjtiurt6i44smo7nafsio8nv2moipe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2LZln1dawnvffzFK8HOOlwHlveNGrgKg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637729830664-desjtiurt6i44smo7nafsio8nv2moipe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
