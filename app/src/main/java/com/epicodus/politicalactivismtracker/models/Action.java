@@ -18,6 +18,8 @@ public class Action {
     private String categoryAction;
     private String price;
     private String iDidThis;
+    private String pushId;
+
 
     public Action() {
     }
@@ -32,6 +34,7 @@ public class Action {
         this.categoryCause = categoryCause;
         this.categoryAction = categoryAction;
         this.price = price;
+
     }
 
     public String getName() {
@@ -72,5 +75,11 @@ public class Action {
 
     public String getIDidThis() {
         return iDidThis;
+    }
+    public String getPushId() {
+        return pushId;
+    }
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }
