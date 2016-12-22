@@ -1,9 +1,12 @@
 package com.epicodus.politicalactivismtracker.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by jensese on 12/21/16.
  */
 
+@Parcel
 public class Action {
     private String name;
     private String location;
