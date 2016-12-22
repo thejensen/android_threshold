@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.epicodus.politicalactivismtracker.R;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Bind(R.id.inputActionTypeEditText) EditText mInputActionTypeEditText;
     @Bind(R.id.inputPriceEditText) EditText mInputPriceEditText;
     @Bind(R.id.inputDescriptionEditText) EditText mInputDescriptionEditText;
+    @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +36,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mFindActionsButton.setOnClickListener(this);
+        mSubmitNewActionInputButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        String title = mInputTitleEditText.getText().toString();
-        String date = mInputDateEditText.getText().toString();
-        String location = mInputLocationEditText.getText().toString();
-        String externalLink = mLinkEditText.getText().toString();
-        String image = mInputImageUrlEditText.getText().toString();
-        String cause = mInputCauseEditText.getText().toString();
-        String actionType = mInputActionTypeEditText.getText().toString();
-        String price = mInputPriceEditText.getText().toString();
-        String description = mInputDescriptionEditText.getText().toString();
 
-        Intent intent = new Intent(MainActivity.this, ActivismActivity.class);
-        Log.d(TAG, location);
-        startActivity(intent);
+        if (v == mSubmitNewActionInputButton) {
+            String title = mInputTitleEditText.getText().toString();
+            String date = mInputDateEditText.getText().toString();
+            String location = mInputLocationEditText.getText().toString();
+            String externalLink = mLinkEditText.getText().toString();
+            String image = mInputImageUrlEditText.getText().toString();
+            String cause = mInputCauseEditText.getText().toString();
+            String actionType = mInputActionTypeEditText.getText().toString();
+            String price = mInputPriceEditText.getText().toString();
+            String description = mInputDescriptionEditText.getText().toString();
+            Log.v(TAG, "Location is: " + location);
+            Toast.makeText(MainActivity.this, "OMG WHY", Toast.LENGTH_SHORT).show();
+        }
+        if (v == mFindActionsButton) {
+            Intent intent = new Intent(MainActivity.this, ActivismActivity.class);
+            startActivity(intent);
+        }
     }
 }
