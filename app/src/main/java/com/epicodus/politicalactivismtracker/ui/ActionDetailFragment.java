@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
 import com.epicodus.politicalactivismtracker.models.Action;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -77,10 +79,19 @@ public class ActionDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
-            DatabaseReference restaurantRef = FirebaseDatabase
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
+            DatabaseReference actionRef = FirebaseDatabase
                     .getInstance()
-                    .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS);
-            restaurantRef.push().setValue(mAction);
+                    .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
+                    .child(uid);
+
+            DatabaseReference pushRef = actionRef.push();
+            String pushId = pushRef.getKey();
+            mAction.setPushId(pushId);
+            actionRef.push().setValue(mAction);
+
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
