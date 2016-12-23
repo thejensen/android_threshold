@@ -1,10 +1,13 @@
 # android_political-activism-tracker
 
 #### _...is a work in progress!_
-The Political Activism Tracker will organize political action opportunities in one place from various sources. Users may also track their actions to keep a log of their efforts.  By organizing information, tracking actions, and setting reminders that there are new actions available, the PAT can encourage ongoing political activism.
+Who knows who will change the world if they don’t show up?
 
-# Warm Up
-An Android app that shows basic weather information, precipitation prediction, and clothing suggestions based on temp and rain forecast, Dec 11, 2016
+The Goal of I’ll Go if You Go is to encourage offline political action. Anyone who tentatively interested in an in-person political event, rally, or other conference can post the event they want to go to, and request that others join them. Other people can say they’ll go too, and communicate up until the event expires.
+
+By sharing the stats or attendees of any event on social media (e.g. Facebook, Twitter, Instagram), other people will see their friends out and about.
+
+I Go if You’ll Go may increase the attendance of political / advocacy events, which would encourage those sponsoring organizations to continue their efforts.
 
 ### By Sara Jensen
 
@@ -30,17 +33,10 @@ Android Studio must be installed.
 
 #### Future Development
 
-* Implement Search in-app (See: https://developer.android.com/training/app-indexing/deep-linking.html#adding-filters)
-* Depending on the issues you care about (e.g. environment, civil rights, housing, international affairs), the app would suggest tasks to actively support them.
-* Tasks include: 
-Vote, 
-Go to a Meetup, 
-Protest, 
-Read a piece of legislation, 
-Call your congressman, 
-Read an article,  
-Share an article
-* Each task would connect the user directly with the resource needed to complete the task (e.g. congressperson’s phone number, link to article, link to meetup).
+* Users can post events
+* Users can request that other people should go
+* Other users can “say” they’ll go by clicking a button that will add them to the event attendee list.
+* When the required number of people for the poster to go to the event is reached, the program will notify the user via email / text / something.
 
 ## Contact
 
