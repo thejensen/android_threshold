@@ -27,7 +27,6 @@
             android:id="@+id/inputDateEditText"
             android:hint="Date (01/01/2017)"
             android:textSize="14sp"
-            android:layout_marginLeft="16dp"
             android:layout_below="@+id/inputTitleEditText"
             android:layout_marginRight="16dp"
             android:layout_alignParentLeft="true"
@@ -130,6 +129,16 @@
             android:lines="3"
             android:textAlignment="textStart"
             android:singleLine="true"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/countThresholdEditText"
+            android:layout_gravity="center_horizontal|center"
+            android:hint="Set threshold!"/>
+
     </LinearLayout>
 
 </FrameLayout>

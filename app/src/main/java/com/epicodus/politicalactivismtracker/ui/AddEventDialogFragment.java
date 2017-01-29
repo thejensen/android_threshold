@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -37,6 +39,7 @@ public class AddEventDialogFragment extends DialogFragment {
     @Bind(R.id.inputActionTypeEditText) EditText mInputActionTypeEditText;
     @Bind(R.id.inputPriceEditText) EditText mInputPriceEditText;
     @Bind(R.id.inputDescriptionEditText) EditText mInputDescriptionEditText;
+    @Bind(R.id.countThresholdEditText) EditText mCountThresholdEditText;
 
     private Event event;
 
@@ -83,8 +86,11 @@ public class AddEventDialogFragment extends DialogFragment {
                         String description = mInputDescriptionEditText.getText().toString();
                         validateFields.add(description);
                         mInputDescriptionEditText.setText("");
+                        int countThreshold = parseInt(mCountThresholdEditText.getText().toString());
+                        mCountThresholdEditText.setText("");
+                        int countActual = 1;
 
-                        event = new Event(title, location, externalLink, date, description, image, cause, actionType, price);
+                        event = new Event(title, location, externalLink, date, description, image, cause, actionType, price, countThreshold, countActual);
 
                         DatabaseReference eventRef = FirebaseDatabase
                                 .getInstance()
