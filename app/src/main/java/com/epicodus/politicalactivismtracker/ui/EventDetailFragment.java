@@ -79,6 +79,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
+            mEvent.setCountActual(mEvent.getCountActual() + 1);
+
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
 
