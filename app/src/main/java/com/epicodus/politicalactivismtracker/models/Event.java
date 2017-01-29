@@ -25,7 +25,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(String name, String location, String link, String date, String description, String imageUrl, String categoryCause, String categoryAction, String price) {
+    public Event(String name, String location, String link, String date, String description, String imageUrl, String categoryCause, String categoryAction, String price, int countThreshold, int countActual) {
         this.name = name;
         this.location = location;
         this.link = link;
@@ -35,6 +35,8 @@ public class Event {
         this.categoryCause = categoryCause;
         this.categoryAction = categoryAction;
         this.price = price;
+        this.countThreshold = countThreshold;
+        this.countActual = countActual;
 
     }
 
