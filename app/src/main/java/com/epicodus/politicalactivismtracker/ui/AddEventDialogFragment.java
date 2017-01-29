@@ -1,7 +1,6 @@
 package com.epicodus.politicalactivismtracker.ui;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -53,6 +52,8 @@ public class AddEventDialogFragment extends DialogFragment {
                 .setPositiveButton("Create Event", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        //TODO actually validate fields
+
                         ArrayList<String> validateFields = new ArrayList<>();
 
                         String title = mInputTitleEditText.getText().toString();
@@ -93,8 +94,6 @@ public class AddEventDialogFragment extends DialogFragment {
 
                         Intent intent = new Intent(getActivity(), EventListActivity.class);
                         startActivity(intent);
-
-                        saveEvent(getActivity());
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -104,11 +103,5 @@ public class AddEventDialogFragment extends DialogFragment {
                 }).setView(view);
         return builder.create();
     }
-
-    // TODO save event to Firebase
-    private void saveEvent(Activity activity) {
-
-    }
-
 
 }
