@@ -19,7 +19,8 @@ public class Event {
     private String price;
     private String iDidThis;
     private String pushId;
-
+    private int countThreshold;
+    private int countActual;
 
     public Event() {
     }
@@ -76,10 +77,28 @@ public class Event {
     public String getIDidThis() {
         return iDidThis;
     }
+
     public String getPushId() {
         return pushId;
     }
+
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public int getCountThreshold() {
+        return countThreshold;
+    }
+
+    public void setCountThreshold(int countThreshold) {
+        this.countThreshold = countThreshold;
+    }
+
+    public int getCountActual() {
+        return countActual;
+    }
+
+    public void setCountActual(int countActual) {
+        this.countActual = countActual;
     }
 }
