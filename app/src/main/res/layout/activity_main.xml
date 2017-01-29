@@ -6,123 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.epicodus.politicalactivismtracker.ui.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imageView"
-        android:src="@drawable/background"
-        android:scaleType="centerCrop" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputTitleEditText"
-        android:hint="Title"
-        android:textSize="14sp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputImageUrlEditText"
-        android:layout_below="@+id/inputLinkEditText"
-        android:layout_alignLeft="@+id/inputLinkEditText"
-        android:layout_alignStart="@+id/inputLinkEditText"
-        android:layout_marginRight="16dp"
-        android:textSize="12sp"
-        android:hint="Image URL (https://www.example.com/image.jpg)"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputCauseEditText"
-        android:layout_below="@+id/inputImageUrlEditText"
-        android:layout_alignLeft="@+id/inputImageUrlEditText"
-        android:layout_alignStart="@+id/inputImageUrlEditText"
-        android:layout_marginRight="16dp"
-        android:textSize="14sp"
-        android:hint="Cause (Civil Liberties, Immigration)"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputActionTypeEditText"
-        android:layout_below="@+id/inputCauseEditText"
-        android:layout_alignLeft="@+id/inputCauseEditText"
-        android:layout_alignStart="@+id/inputCauseEditText"
-        android:layout_marginRight="16dp"
-        android:textSize="14sp"
-        android:hint="Type of Action (Protest, Call Congressman)"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/inputActionTypeEditText"
-        android:layout_alignLeft="@+id/inputActionTypeEditText"
-        android:layout_alignStart="@+id/inputActionTypeEditText"
-        android:layout_marginRight="16dp"
-        android:id="@+id/inputPriceEditText"
-        android:hint="Price to participate (free, $20)"
-        android:textSize="14sp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_below="@+id/inputPriceEditText"
-        android:layout_alignLeft="@+id/inputPriceEditText"
-        android:layout_alignStart="@+id/inputPriceEditText"
-        android:layout_marginRight="16dp"
-        android:id="@+id/inputDescriptionEditText"
-        android:hint="Action Description goes here!"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="14sp"
-        android:lines="3"
-        android:textAlignment="textStart"
-        android:singleLine="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputDateEditText"
-        android:hint="Date (01/01/2017)"
-        android:textSize="14sp"
-        android:layout_marginLeft="16dp"
-        android:layout_below="@+id/inputTitleEditText"
-        android:layout_marginRight="16dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Submit New Action"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:padding="6dp"
-        android:id="@+id/submitNewActionInputButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -147,38 +30,14 @@
         android:layout_below="@+id/findActionsButton"
         android:layout_centerHorizontal="true" />
 
-    <EditText
+    <Button
+        android:text="Submit New Action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputLinkEditText"
-        android:hint="External Link (http://www.moveon.org)"
-        android:textSize="14sp"
-        android:layout_below="@+id/inputLocationEditText"
-        android:layout_alignLeft="@+id/inputDateEditText"
-        android:layout_alignStart="@+id/inputDateEditText"
-        android:layout_marginRight="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/inputLocationEditText"
-        android:hint="Location"
-        android:textSize="14sp"
-        android:layout_below="@+id/inputDateEditText"
-        android:layout_alignLeft="@+id/inputDateEditText"
-        android:layout_alignStart="@+id/inputDateEditText" />
-
-    <TextView
-        android:text="Add New Action Item for the Community!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textSize="18sp"
-        android:layout_below="@+id/mySavedActionsButton"
+        android:background="@color/colorPrimary"
+        android:padding="6dp"
+        android:id="@+id/submitNewActionInputButton"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
