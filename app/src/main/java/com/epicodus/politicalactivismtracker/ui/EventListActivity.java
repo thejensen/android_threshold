@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.epicodus.politicalactivismtracker.models.Action;
+import com.epicodus.politicalactivismtracker.models.Event;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ActionListActivity extends AppCompatActivity {
+public class EventListActivity extends AppCompatActivity {
     private DatabaseReference mActionReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
@@ -36,9 +36,9 @@ public class ActionListActivity extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Action, FirebaseActionViewHolder>(Action.class, R.layout.action_list_item, FirebaseActionViewHolder.class, mActionReference) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.action_list_item, FirebaseEventViewHolder.class, mActionReference) {
             @Override
-            protected void populateViewHolder(FirebaseActionViewHolder viewHolder, Action model, int position) {
+            protected void populateViewHolder(FirebaseEventViewHolder viewHolder, Event model, int position) {
                 viewHolder.bindAction(model);
                 mProgressBar.setVisibility(View.GONE);
             }

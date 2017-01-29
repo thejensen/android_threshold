@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.epicodus.politicalactivismtracker.models.Action;
+import com.epicodus.politicalactivismtracker.models.Event;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,21 +25,21 @@ import java.util.ArrayList;
  * Created by jensese on 12/22/16.
  */
 
-public class FirebaseSavedActionViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
     View mView;
     Context mContext;
 
-    public FirebaseSavedActionViewHolder(View itemView) {
+    public FirebaseSavedEventViewHolder(View itemView) {
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
         itemView.setOnClickListener(this);
     }
 
-    public void bindAction(Action action) {
+    public void bindAction(Event event) {
         TextView actionNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
         TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
 //        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
@@ -51,39 +51,39 @@ public class FirebaseSavedActionViewHolder extends RecyclerView.ViewHolder imple
 //        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
 
         Picasso.with(mContext)
-                .load(action.getImageUrl())
+                .load(event.getImageUrl())
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
                 .into(actionImageView);
 
-        actionNameTextView.setText(action.getName());
-        actionLocationTextView.setText(action.getLocation());
-//        actionLinkTextView.setText(action.getLink());
-//        actionDateTextView.setText(action.getDate());
-//        actionDescriptionTextView.setText(action.getDescription());
-//        actionCauseTextView.setText(action.getCategoryCause());
-        actionActionTextView.setText(action.getCategoryAction());
-//        actionPriceTextView.setText(action.getPrice());
+        actionNameTextView.setText(event.getName());
+        actionLocationTextView.setText(event.getLocation());
+//        actionLinkTextView.setText(event.getLink());
+//        actionDateTextView.setText(event.getDate());
+//        actionDescriptionTextView.setText(event.getDescription());
+//        actionCauseTextView.setText(event.getCategoryCause());
+        actionActionTextView.setText(event.getCategoryAction());
+//        actionPriceTextView.setText(event.getPrice());
 
     }
 
     @Override
     public void onClick(View v) {
-        final ArrayList<Action> actions = new ArrayList<>();
+        final ArrayList<Event> events = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    actions.add(snapshot.getValue(Action.class));
+                    events.add(snapshot.getValue(Event.class));
                 }
 
                 int itemPosition = getLayoutPosition();
 
-                Intent intent = new Intent(mContext, ActionDetailActivity.class);
+                Intent intent = new Intent(mContext, EventDetailActivity.class);
                 intent.putExtra("position", itemPosition);
-                intent.putExtra("actions", Parcels.wrap(actions));
+                intent.putExtra("events", Parcels.wrap(events));
 
                 mContext.startActivity(intent);
             }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.epicodus.politicalactivismtracker.models.Action;
+import com.epicodus.politicalactivismtracker.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -77,25 +77,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             validateFields.add(description);
 
 
-            Action action = new Action(title, location, externalLink, date, description, image, cause, actionType, price);
+            Event event = new Event(title, location, externalLink, date, description, image, cause, actionType, price);
 
             DatabaseReference actionRef = FirebaseDatabase
                     .getInstance()
                     .getReference(Constants.FIREBASE_CHILD_ACTIONS);
-            actionRef.push().setValue(action);
-            Toast.makeText(MainActivity.this, "Action Saved!", Toast.LENGTH_SHORT).show();
+            actionRef.push().setValue(event);
+            Toast.makeText(MainActivity.this, "Event Saved!", Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
+            Intent intent = new Intent(MainActivity.this, EventListActivity.class);
             startActivity(intent);
 
         }
 
         if (v == mFindActionsButton) {
-            Intent intent = new Intent(MainActivity.this, ActionListActivity.class);
+            Intent intent = new Intent(MainActivity.this, EventListActivity.class);
             startActivity(intent);
         }
         if (v == mMySavedActionsButton) {
-            Intent intent = new Intent(MainActivity.this, SavedActionListActivity.class);
+            Intent intent = new Intent(MainActivity.this, SavedEventListActivity.class);
             startActivity(intent);
         }
     }

@@ -4,7 +4,7 @@
     android:id="@+id/activity_action_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.epicodus.politicalactivismtracker.ui.ActionDetailActivity">
+    tools:context="com.epicodus.politicalactivismtracker.ui.EventDetailActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

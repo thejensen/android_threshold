@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.epicodus.politicalactivismtracker.models.Action;
+import com.epicodus.politicalactivismtracker.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ActionDetailFragment extends Fragment implements View.OnClickListener {
+public class EventDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.actionNameTextView) TextView mActionNameLabel;
     @Bind(R.id.locationTextView) TextView mLocationLabel;
     @Bind(R.id.linkTextView) TextView mLinkLabel;
@@ -39,12 +39,12 @@ public class ActionDetailFragment extends Fragment implements View.OnClickListen
     @Bind(R.id.actionImageView) ImageView mImageLabel;
     @Bind(R.id.saveActionButton) Button mSaveActionButton;
 
-    private Action mAction;
+    private Event mEvent;
 
-    public static ActionDetailFragment newInstance(Action action) {
-        ActionDetailFragment restaurantDetailFragment = new ActionDetailFragment();
+    public static EventDetailFragment newInstance(Event event) {
+        EventDetailFragment restaurantDetailFragment = new EventDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("action", Parcels.wrap(action));
+        args.putParcelable("event", Parcels.wrap(event));
         restaurantDetailFragment.setArguments(args);
         return restaurantDetailFragment;
     }
@@ -52,7 +52,7 @@ public class ActionDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        mAction = Parcels.unwrap(getArguments().getParcelable("action"));
+        mEvent = Parcels.unwrap(getArguments().getParcelable("event"));
     }
 
     @Override
@@ -61,15 +61,15 @@ public class ActionDetailFragment extends Fragment implements View.OnClickListen
         View view = inflater.inflate(R.layout.fragment_action_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mAction.getImageUrl()).into(mImageLabel);
+        Picasso.with(view.getContext()).load(mEvent.getImageUrl()).into(mImageLabel);
 
-        mActionNameLabel.setText(mAction.getName());
-        mLocationLabel.setText(mAction.getLocation());
-        mLinkLabel.setText(mAction.getLink());
-        mDateLabel.setText(mAction.getDate());
-        mDescriptionLabel.setText(mAction.getDescription());
-        mCauseLabel.setText(mAction.getCategoryCause());
-        mActionCategoryLabel.setText(mAction.getCategoryAction());
+        mActionNameLabel.setText(mEvent.getName());
+        mLocationLabel.setText(mEvent.getLocation());
+        mLinkLabel.setText(mEvent.getLink());
+        mDateLabel.setText(mEvent.getDate());
+        mDescriptionLabel.setText(mEvent.getDescription());
+        mCauseLabel.setText(mEvent.getCategoryCause());
+        mActionCategoryLabel.setText(mEvent.getCategoryAction());
 
         mSaveActionButton.setOnClickListener(this);
 
@@ -89,8 +89,8 @@ public class ActionDetailFragment extends Fragment implements View.OnClickListen
 
             DatabaseReference pushRef = actionRef.push();
             String pushId = pushRef.getKey();
-            mAction.setPushId(pushId);
-            actionRef.push().setValue(mAction);
+            mEvent.setPushId(pushId);
+            actionRef.push().setValue(mEvent);
 
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }

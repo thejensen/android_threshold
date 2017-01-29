@@ -7,7 +7,7 @@ import org.parceler.Parcel;
  */
 
 @Parcel
-public class Action {
+public class Event {
     private String name;
     private String location;
     private String link;
@@ -21,10 +21,10 @@ public class Action {
     private String pushId;
 
 
-    public Action() {
+    public Event() {
     }
 
-    public Action(String name, String location, String link, String date, String description, String imageUrl, String categoryCause, String categoryAction, String price) {
+    public Event(String name, String location, String link, String date, String description, String imageUrl, String categoryCause, String categoryAction, String price) {
         this.name = name;
         this.location = location;
         this.link = link;
