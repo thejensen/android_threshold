@@ -38,15 +38,18 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.actionCategoryTextView) TextView mActionCategoryLabel;
     @Bind(R.id.actionImageView) ImageView mImageLabel;
     @Bind(R.id.saveActionButton) Button mSaveActionButton;
+    @Bind(R.id.countActualTextView) TextView mCountActualTextView;
+    @Bind(R.id.countThresholdTextView) TextView mCountThresholdTextView;
+    int clickCounter = 0;
 
     private Event mEvent;
 
     public static EventDetailFragment newInstance(Event event) {
-        EventDetailFragment restaurantDetailFragment = new EventDetailFragment();
+        EventDetailFragment eventDetailFragment = new EventDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("event", Parcels.wrap(event));
-        restaurantDetailFragment.setArguments(args);
-        return restaurantDetailFragment;
+        eventDetailFragment.setArguments(args);
+        return eventDetailFragment;
     }
 
     @Override
@@ -70,6 +73,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         mDescriptionLabel.setText(mEvent.getDescription());
         mCauseLabel.setText(mEvent.getCategoryCause());
         mActionCategoryLabel.setText(mEvent.getCategoryAction());
+        mCountActualTextView.setText(mEvent.getCountActual() + "");
+        mCountThresholdTextView.setText(mEvent.getCountThreshold() + " Attending");
 
         mSaveActionButton.setOnClickListener(this);
 
@@ -79,22 +84,37 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
-            mEvent.setCountActual(mEvent.getCountActual() + 1);
+            clickCounter += 1;
 
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = user.getUid();
+            //TODO: Validate the user's saved event isn't in firebase instead of using this hacky counter.
+            if (clickCounter == 1) {
+                mEvent.setCountActual(mEvent.getCountActual() + 1);
 
-            DatabaseReference actionRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
-                    .child(uid);
+                DatabaseReference eventRef = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_ACTIONS);
+                eventRef.removeValue();
+                eventRef.push().setValue(mEvent);
 
-            DatabaseReference pushRef = actionRef.push();
-            String pushId = pushRef.getKey();
-            mEvent.setPushId(pushId);
-            actionRef.push().setValue(mEvent);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
 
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                DatabaseReference savedEventRef = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
+                        .child(uid);
+
+                DatabaseReference pushRef = savedEventRef.push();
+                String pushId = pushRef.getKey();
+                mEvent.setPushId(pushId);
+                savedEventRef.push().setValue(mEvent);
+
+                Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getContext(), "You're going! Go to 'My Events' to confirm", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }

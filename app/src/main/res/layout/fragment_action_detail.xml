@@ -14,24 +14,24 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="212dp"
             android:id="@+id/actionImageView"
             android:src="@drawable/background"
             android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="118dp"
             android:background="@android:color/white"
             android:paddingTop="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="20dp">
+            >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Action Name"
+                android:text="Event Name"
                 android:id="@+id/actionNameTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -53,7 +53,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Action Category"
+                android:text="Event Category"
                 android:id="@+id/actionCategoryTextView"
                 android:layout_below="@+id/causeTextView"
                 android:textColor="@color/colorPrimaryDark"
@@ -82,6 +82,47 @@
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/attendingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/actionCategoryTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                >
+
+                <TextView
+                    android:text="23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/countActualTextView"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorAccent"/>
+
+                <TextView
+                    android:text="/"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dash"
+                    android:layout_weight="0.05"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"/>
+
+                <TextView
+                    android:text="1000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/countThresholdTextView"
+                    android:textSize="18sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorAccent"/>
+
+            </LinearLayout>
+
         </RelativeLayout>
 
         <RelativeLayout

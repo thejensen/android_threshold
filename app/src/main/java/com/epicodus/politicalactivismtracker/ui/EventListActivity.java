@@ -36,7 +36,7 @@ public class EventListActivity extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.action_list_item, FirebaseEventViewHolder.class, mActionReference) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.event_list_item, FirebaseEventViewHolder.class, mActionReference) {
             @Override
             protected void populateViewHolder(FirebaseEventViewHolder viewHolder, Event model, int position) {
                 viewHolder.bindAction(model);
