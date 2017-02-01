@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.epicodus.politicalactivismtracker.ui.MainActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.epicodus.politicalactivismtracker.ui.MainActivity"
+                android:background="@drawable/background">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Act Now!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:id="@+id/findActionsButton"
-        android:background="@android:color/transparent"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="My Action Log"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mySavedActionsButton"
-        android:textSize="18sp"
-        android:background="@android:color/transparent"
-        android:textColor="@color/colorPrimary"
-        android:layout_below="@+id/findActionsButton"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:text="Submit New Action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:padding="6dp"
         android:id="@+id/submitNewActionInputButton"
+        android:layout_weight="1"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:elevation="0dp"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:text="Add Event"
+        android:textSize="18sp"
+        android:textColor="@color/colorIcons"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Join!"
+            android:textSize="30sp"
+            android:id="@+id/findActionsButton"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:background="@color/colorAccent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <Button
+            android:text="My Events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mySavedActionsButton"
+            android:textSize="30sp"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-smallcaps"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:background="@color/colorAccent"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp">
+
+        <ProgressBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar_theactualbar"
+            style="@android:style/Widget.ProgressBar.Large"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="408dp"
+            android:paddingTop="50dp"/>
+    </FrameLayout>
 
 </RelativeLayout>

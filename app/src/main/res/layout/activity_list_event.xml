@@ -5,6 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:text="Get involved!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/getInvolvedTextView"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:fontFamily="sans-serif-smallcaps"/>
+
+    <TextView
+        android:text="I'm with them!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/myEventsTextView"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:fontFamily="sans-serif-smallcaps"/>
+
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,5 +38,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:paddingTop="50dp"/>
 </FrameLayout>

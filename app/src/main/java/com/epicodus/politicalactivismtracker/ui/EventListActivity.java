@@ -1,11 +1,13 @@
 package com.epicodus.politicalactivismtracker.ui;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
@@ -22,6 +24,7 @@ public class EventListActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter mFirebaseAdapter;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
+    @Bind(R.id.myEventsTextView) TextView mMyEventsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,12 @@ public class EventListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_event);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+
         mProgressBar.setVisibility(View.VISIBLE);
+
+        mMyEventsTextView.setVisibility(View.INVISIBLE);
 
         mActionReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         setUpFirebaseAdapter();
@@ -39,7 +47,7 @@ public class EventListActivity extends AppCompatActivity {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.event_list_item, FirebaseEventViewHolder.class, mActionReference) {
             @Override
             protected void populateViewHolder(FirebaseEventViewHolder viewHolder, Event model, int position) {
-                viewHolder.bindAction(model);
+                viewHolder.bindEvent(model);
                 mProgressBar.setVisibility(View.GONE);
             }
         };

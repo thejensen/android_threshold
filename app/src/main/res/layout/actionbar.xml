@@ -12,5 +12,6 @@
         android:id="@+id/action_bar_title"
         android:text="THRESHOLD"
         android:textColor="#ffffff"
+        android:fontFamily="sans-serif-smallcaps"
         android:textSize="24sp" />
 </LinearLayout>

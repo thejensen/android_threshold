@@ -39,7 +39,7 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
         itemView.setOnClickListener(this);
     }
 
-    public void bindAction(Event event) {
+    public void bindEvent(Event event) {
         TextView eventNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
         TextView eventLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
 //        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
@@ -64,7 +64,6 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
 //        actionCauseTextView.setText(event.getCategoryCause());
         eventActionTextView.setText(event.getCategoryAction());
 //        actionPriceTextView.setText(event.getPrice());
-
     }
 
     @Override

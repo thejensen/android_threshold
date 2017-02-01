@@ -1,11 +1,13 @@
 package com.epicodus.politicalactivismtracker.ui;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
@@ -25,7 +27,7 @@ public class SavedEventListActivity extends AppCompatActivity {
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
-
+    @Bind(R.id.getInvolvedTextView) TextView mGetInvolvedTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,12 @@ public class SavedEventListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_event);
         ButterKnife.bind(this);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.actionbar);
+
         mProgressBar.setVisibility(View.VISIBLE);
+
+        mGetInvolvedTextView.setVisibility(View.INVISIBLE);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = user.getUid();
