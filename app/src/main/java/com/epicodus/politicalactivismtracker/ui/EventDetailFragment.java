@@ -109,6 +109,9 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
                 mEvent.setPushId(pushId);
                 savedEventRef.push().setValue(mEvent);
 
+                //TODO: Refresh the number only, not the entire fragment, but whatever for now!
+                EventDetailFragment.this.getActivity().recreate();
+
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
             }
             else {
