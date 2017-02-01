@@ -24,7 +24,7 @@ public class EventDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action_detail);
+        setContentView(R.layout.activity_event_detail);
         ButterKnife.bind(this);
 
         mEvents = Parcels.unwrap(getIntent().getParcelableExtra("events"));

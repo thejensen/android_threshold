@@ -61,7 +61,7 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_action_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_event_detail, container, false);
         ButterKnife.bind(this, view);
 
         Picasso.with(view.getContext()).load(mEvent.getImageUrl()).into(mImageLabel);
@@ -109,7 +109,7 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
                 mEvent.setPushId(pushId);
                 savedEventRef.push().setValue(mEvent);
 
-                //TODO: Refresh the number only, not the entire fragment, but whatever for now!
+                //TODO: Refresh the number only, not the entire fragment...
                 EventDetailFragment.this.getActivity().recreate();
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();

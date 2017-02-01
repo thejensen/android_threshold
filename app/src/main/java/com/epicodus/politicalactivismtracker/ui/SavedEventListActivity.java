@@ -30,7 +30,7 @@ public class SavedEventListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_action);
+        setContentView(R.layout.activity_list_event);
         ButterKnife.bind(this);
 
         mProgressBar.setVisibility(View.VISIBLE);
