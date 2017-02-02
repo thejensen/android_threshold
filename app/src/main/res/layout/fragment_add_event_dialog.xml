@@ -17,6 +17,7 @@
             android:id="@+id/inputTitleEditText"
             android:hint="Title"
             android:textSize="14sp"
+            android:layout_marginRight="16dp"
             android:layout_alignLeft="@+id/inputLocationEditText"
             android:layout_alignStart="@+id/inputLocationEditText"/>
 
@@ -39,6 +40,7 @@
             android:id="@+id/inputLocationEditText"
             android:hint="Location"
             android:textSize="14sp"
+            android:layout_marginRight="16dp"
             android:layout_below="@+id/inputDateEditText"
             android:layout_alignLeft="@+id/inputDateEditText"
             android:layout_alignStart="@+id/inputDateEditText"/>
@@ -95,7 +97,7 @@
             android:layout_alignStart="@+id/inputCauseEditText"
             android:layout_marginRight="16dp"
             android:textSize="14sp"
-            android:hint="Type of Action (Protest, Call Congressman)"
+            android:hint="Action (Protest, Call Congressman)"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"/>
 
@@ -134,10 +136,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:ems="10"
+            android:textSize="14sp"
             android:id="@+id/countThresholdEditText"
+            android:layout_alignLeft="@+id/inputPriceEditText"
             android:layout_gravity="center_horizontal|center"
-            android:hint="Set threshold!"/>
+            android:layout_marginRight="16dp"
+            android:hint="How many attendees needed to hold the event?"/>
 
     </LinearLayout>
 
