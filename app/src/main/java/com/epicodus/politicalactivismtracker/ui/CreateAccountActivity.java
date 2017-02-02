@@ -23,6 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+
+//TODO: handle error more informatively if create-account fails because the user already exists in the database
+
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
     @Bind(R.id.createUserButton) Button mCreateUserButton;
