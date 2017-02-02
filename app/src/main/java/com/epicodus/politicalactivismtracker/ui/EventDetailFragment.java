@@ -90,12 +90,6 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
             if (clickCounter == 1) {
                 mEvent.setCountActual(mEvent.getCountActual() + 1);
 
-                DatabaseReference eventRef = FirebaseDatabase
-                        .getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_ACTIONS);
-                eventRef.removeValue();
-                eventRef.push().setValue(mEvent);
-
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = user.getUid();
 
