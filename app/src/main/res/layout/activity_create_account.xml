@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.epicodus.politicalactivismtracker.ui.CreateAccountActivity"
-    android:background="@color/colorPrimary">
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/background"
+        android:id="@+id/backgroundImageView"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-smallcaps"
+        android:background="@color/colorDivider"
+        android:gravity="center"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
+        android:background="@color/colorDivider"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLayout">
@@ -27,7 +57,8 @@
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed"/>
 
         <EditText
             android:id="@+id/emailEditText"
@@ -41,7 +72,8 @@
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed"/>
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -55,7 +87,8 @@
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed"/>
 
         <EditText
             android:id="@+id/confirmPasswordEditText"
@@ -69,7 +102,8 @@
             android:layout_marginBottom="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@android:color/darker_gray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-condensed"/>
 
 
         <Button
@@ -80,29 +114,21 @@
             android:text="Sign up"
             android:background="@color/colorAccent"
             android:layout_marginTop="15dp"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-smallcaps"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textColor="@android:color/black"
+            android:textColor="?android:attr/textColorLink"
             android:textStyle="bold"
-            android:textSize="15sp"
-            android:text="Already have an account? Log in here!"
+            android:textSize="18sp"
+            android:text="Have an account? Log In"
             android:id="@+id/loginTextView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-smallcaps" />
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:textColor="@android:color/black"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

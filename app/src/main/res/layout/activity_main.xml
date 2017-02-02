@@ -5,7 +5,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="com.epicodus.politicalactivismtracker.ui.MainActivity"
-                android:background="@drawable/background">
+                android:background="@color/colorDivider">
 
     <Button
         android:layout_width="match_parent"
