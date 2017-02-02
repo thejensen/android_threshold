@@ -1,6 +1,8 @@
 package com.epicodus.politicalactivismtracker.ui;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -77,6 +79,7 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         mCountThresholdTextView.setText(mEvent.getCountThreshold() + " Attending");
 
         mSaveActionButton.setOnClickListener(this);
+        mLinkLabel.setOnClickListener(this);
 
         return view;
     }
@@ -111,7 +114,12 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
             else {
                 Toast.makeText(getContext(), "You're going! Go to 'My Events' to confirm", Toast.LENGTH_SHORT).show();
             }
-
         }
+        if (v == mLinkLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mEvent.getLink()));
+            startActivity(webIntent);
+        }
+
     }
 }
