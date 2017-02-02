@@ -14,14 +14,14 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="212dp"
+            android:layout_height="160dp"
             android:id="@+id/actionImageView"
             android:src="@drawable/background"
             android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="134dp"
             android:background="@android:color/white"
             android:paddingTop="20dp"
             android:paddingLeft="10dp"
