@@ -18,30 +18,32 @@ Android Studio must be installed.
 * In terminal, navigate to your Desktop
 * _git clone https://github.com/thejensen/android_political-activism-tracker
 * Open Android Studio
-* Open PoliticalActivismTracker 
+* Open PoliticalActivismTracker (Yes, that's the folder name)
 * Click the green arrow to run the app in a Galaxy S6 emulator running API 23
 
 ## Known Bugs
 
 #### Functional bugs
 
-* No known bugs yet.
+* Events do not expire
+* Validation in event intake form
+* Need character limit on event title d’oh
+* when a user saves an event, it updates the global event count and theirs. but when another user saves the same global event, it doesn’t update the first user’s saved count.
 
 #### UX bugs
 
-* Add form is weird, would like it in a dialog fragment.
+* Need placeholder for 0 saved events ugh
 
 #### Future Development
 
-* Users can post events
 * Users can request that other people should go
-* Other users can “say” they’ll go by clicking a button that will add them to the event attendee list.
 * When the required number of people for the poster to go to the event is reached, the program will notify the user via email / text / something.
+* And maaany more
 
 ## Contact
 
 I'm Sara! at jensen.sara.e@gmail.com 
-Contact me with questions about the code, or requests to contribute.
+Contact me with questions about the code, plans for future development, or requests to contribute.
 
 ### Technologies Used
 
