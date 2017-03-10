@@ -26,6 +26,7 @@ public class EventDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
     private EventPagerAdapter adapterViewPager;
     ArrayList<Event> mEvents = new ArrayList<>();
+    ArrayList<String> mKeys = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +38,10 @@ public class EventDetailActivity extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.actionbar);
 
         mEvents = Parcels.unwrap(getIntent().getParcelableExtra("events"));
+        mKeys = Parcels.unwrap(getIntent().getParcelableExtra("keys"));
         int startingPosition = getIntent().getIntExtra("position", 0);
 
-        adapterViewPager = new EventPagerAdapter(getSupportFragmentManager(), mEvents);
+        adapterViewPager = new EventPagerAdapter(getSupportFragmentManager(), mKeys, mEvents);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
     }

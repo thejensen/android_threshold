@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class EventDetailFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = EventDetailFragment.class.getSimpleName();
     @Bind(R.id.actionNameTextView) TextView mActionNameLabel;
     @Bind(R.id.locationTextView) TextView mLocationLabel;
     @Bind(R.id.linkTextView) TextView mLinkLabel;
@@ -46,12 +48,14 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.countActualTextView) TextView mCountActualTextView;
     @Bind(R.id.countThresholdTextView) TextView mCountThresholdTextView;
     private Event mEvent;
+    private String mKey;
     private boolean eventIsSaved;
 
-    public static EventDetailFragment newInstance(Event event) {
+    public static EventDetailFragment newInstance(Event event, String key) {
         EventDetailFragment eventDetailFragment = new EventDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable("event", Parcels.wrap(event));
+        args.putParcelable("key", Parcels.wrap(key));
         eventDetailFragment.setArguments(args);
         return eventDetailFragment;
     }
@@ -60,6 +64,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         mEvent = Parcels.unwrap(getArguments().getParcelable("event"));
+        mKey = Parcels.unwrap(getArguments().getParcelable("key"));
+        Log.d(TAG, "ok, is this the key actually in the event detail fragment??? :" + mKey);
 
         // Checks to see if the name of the event they're looking at matches the name of any event
         // saved in their saved events in the database. It has to be 'on create' because every time
@@ -99,27 +105,9 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
             }
             else {
                 mEvent.setCountActual(mEvent.getCountActual() + 1);
-
-                // Update counter on the global event... actually totally delete and readd the event :/
-                DatabaseReference eventRef = FirebaseDatabase
-                        .getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_ACTIONS);
-                eventRef.removeValue();
-                eventRef.push().setValue(mEvent);
-
-                // Save event to user's account
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
-
-                DatabaseReference savedEventRef = FirebaseDatabase
-                        .getInstance()
-                        .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
-                        .child(uid);
-
-                DatabaseReference pushRef = savedEventRef.push();
-                String pushId = pushRef.getKey();
-                mEvent.setPushId(pushId);
-                savedEventRef.push().setValue(mEvent);
+                eventHappeningCheck();
+                updateGlobalEventWithNewCounter();
+                saveEventToUsersAccount();
 
                 //TODO: Refresh the number only, not the entire fragment...
                 EventDetailFragment.this.getActivity().recreate();
@@ -131,6 +119,39 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.parse(mEvent.getLink()));
             startActivity(webIntent);
+        }
+    }
+
+    private void saveEventToUsersAccount() {
+        // Save event to user's account
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        DatabaseReference savedEventRef = FirebaseDatabase
+                .getInstance()
+                .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
+                .child(uid);
+
+        DatabaseReference pushRef = savedEventRef.push();
+        String pushId = pushRef.getKey();
+        mEvent.setPushId(pushId);
+        savedEventRef.push().setValue(mEvent);
+    }
+
+    private void updateGlobalEventWithNewCounter() {
+        // Update counter on the global event... actually totally delete ALL EVENTS?!?!?!?! and repush the event :/
+        DatabaseReference eventRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS + "/" + mKey);
+
+        eventRef.setValue(mEvent);
+
+        Log.d(TAG, "What is this child key? in updateGlobalEventWithNewCounter: " + mKey);
+        Log.d(TAG, "And the event is an object? lol key = in updateGlobalEventWithNewCounter: " + mEvent);
+
+    }
+
+    private void eventHappeningCheck() {
+        if (mEvent.getCountActual() >= mEvent.getCountThreshold()) {
+            mEvent.setHappening(1);
         }
     }
 
@@ -152,24 +173,16 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
 

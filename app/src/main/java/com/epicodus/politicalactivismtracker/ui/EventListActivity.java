@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,13 +21,16 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class EventListActivity extends AppCompatActivity {
+    private static final String TAG = EventListActivity.class.getSimpleName();
     private DatabaseReference mActionReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private Query query;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
     @Bind(R.id.myEventsTextView) TextView mMyEventsTextView;
@@ -45,11 +49,14 @@ public class EventListActivity extends AppCompatActivity {
         mMyEventsTextView.setVisibility(View.INVISIBLE);
 
         mActionReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
-        setUpFirebaseAdapter();
+        query = mActionReference.getRef();
+        Log.d(TAG, "What is the query: " + query);
+        setUpFirebaseAdapter(query);
     }
 
-    private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.event_list_item, FirebaseEventViewHolder.class, mActionReference) {
+    private void setUpFirebaseAdapter(Query query) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.event_list_item, FirebaseEventViewHolder.class,
+                query) {
             @Override
             protected void populateViewHolder(FirebaseEventViewHolder viewHolder, Event model, int position) {
                 viewHolder.bindEvent(model);

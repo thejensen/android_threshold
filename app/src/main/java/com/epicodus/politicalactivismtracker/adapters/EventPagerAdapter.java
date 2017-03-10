@@ -15,15 +15,17 @@ import java.util.ArrayList;
 
 public class EventPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Event> mEvents;
+    private ArrayList<String> mKeys;
 
-    public EventPagerAdapter(FragmentManager fm, ArrayList<Event> events) {
+    public EventPagerAdapter(FragmentManager fm, ArrayList<String> keys, ArrayList<Event> events) {
         super(fm);
+        mKeys = keys;
         mEvents = events;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return EventDetailFragment.newInstance(mEvents.get(position));
+        return EventDetailFragment.newInstance(mEvents.get(position), mKeys.get(position));
     }
 
     @Override
