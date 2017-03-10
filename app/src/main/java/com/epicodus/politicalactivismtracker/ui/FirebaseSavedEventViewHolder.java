@@ -44,6 +44,7 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
         TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
         ImageView actionImageView = (ImageView) mView.findViewById(R.id.actionImageView);
         TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
+        ImageView eventThresholdListImageView = (ImageView) mView.findViewById(R.id.thresholdListImageView);
 
         Picasso.with(mContext)
                 .load(event.getImageUrl())
@@ -54,6 +55,10 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
         actionNameTextView.setText(event.getName());
         actionLocationTextView.setText(event.getLocation());
         actionActionTextView.setText(event.getCategoryAction());
+
+        if (event.getHappening() == 1) {
+            eventThresholdListImageView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

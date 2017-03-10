@@ -47,9 +47,12 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.saveActionButton) Button mSaveActionButton;
     @Bind(R.id.countActualTextView) TextView mCountActualTextView;
     @Bind(R.id.countThresholdTextView) TextView mCountThresholdTextView;
+    @Bind(R.id.thresholdImageView) ImageView mThresholdImageView;
+
     private Event mEvent;
     private String mKey;
     private boolean eventIsSaved;
+
 
     public static EventDetailFragment newInstance(Event event, String key) {
         EventDetailFragment eventDetailFragment = new EventDetailFragment();
@@ -90,6 +93,11 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         mActionCategoryLabel.setText(mEvent.getCategoryAction());
         mCountActualTextView.setText(mEvent.getCountActual() + "");
         mCountThresholdTextView.setText(mEvent.getCountThreshold() + " Attending");
+
+        Log.d(TAG, "Event happening?" + mEvent.getHappening());
+        if (mEvent.getHappening() == 0) {
+            mThresholdImageView.setVisibility(View.INVISIBLE);
+        }
 
         mSaveActionButton.setOnClickListener(this);
         mLinkLabel.setOnClickListener(this);

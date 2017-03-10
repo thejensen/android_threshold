@@ -28,8 +28,8 @@ import java.util.ArrayList;
 
 public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     public static final String TAG = FirebaseEventViewHolder.class.getSimpleName();
-    public static final int MAX_WIDTH = 200;
-    private static final int MAX_HEIGHT = 200;
+    public static final int MAX_WIDTH = 300;
+    private static final int MAX_HEIGHT = 300;
 
     View mView;
     Context mContext;
@@ -46,6 +46,8 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
         TextView eventLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
         ImageView eventImageView = (ImageView) mView.findViewById(R.id.actionImageView);
         TextView eventActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
+        TextView eventThresholdCountTextView = (TextView) mView.findViewById(R.id.thresholdCountTextView);
+        ImageView eventThresholdListImageView = (ImageView) mView.findViewById(R.id.thresholdListImageView);
 
         Picasso.with(mContext)
                 .load(event.getImageUrl())
@@ -56,6 +58,11 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
         eventNameTextView.setText(event.getName());
         eventLocationTextView.setText(event.getLocation());
         eventActionTextView.setText(event.getCategoryAction());
+        eventThresholdCountTextView.setText(("Threshold: " + event.getCountThreshold()));
+
+        if (event.getHappening() == 1) {
+            eventThresholdListImageView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
