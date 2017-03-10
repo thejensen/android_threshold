@@ -59,12 +59,16 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
     @Override
     public void onClick(View v) {
         final ArrayList<Event> events = new ArrayList<>();
+        final ArrayList<String> keys = new ArrayList<>();
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String key = snapshot.getKey();
+                    keys.add(key);
                     events.add(snapshot.getValue(Event.class));
                 }
 
@@ -72,6 +76,7 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
 
                 Intent intent = new Intent(mContext, EventDetailActivity.class);
                 intent.putExtra("position", itemPosition);
+                intent.putExtra("keys", Parcels.wrap(keys));
                 intent.putExtra("events", Parcels.wrap(events));
 
                 mContext.startActivity(intent);

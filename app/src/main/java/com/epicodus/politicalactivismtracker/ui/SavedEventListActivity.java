@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +29,7 @@ import butterknife.ButterKnife;
 public class SavedEventListActivity extends AppCompatActivity {
     private DatabaseReference mEventReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
-
+    private Query query;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
     @Bind(R.id.getInvolvedTextView) TextView mGetInvolvedTextView;
@@ -53,14 +54,14 @@ public class SavedEventListActivity extends AppCompatActivity {
                 .getInstance()
                 .getReference(Constants.FIREBASE_MY_CHILD_ACTIONS)
                 .child(uid);
-
-        setUpFirebaseAdapter();
+        query = mEventReference.getRef();
+        setUpFirebaseAdapter(query);
     }
 
-    private void setUpFirebaseAdapter() {
+    private void setUpFirebaseAdapter(Query query) {
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseSavedEventViewHolder>
                 (Event.class, R.layout.event_list_item, FirebaseSavedEventViewHolder.class,
-                        mEventReference) {
+                        query) {
 
             @Override
             protected void populateViewHolder(FirebaseSavedEventViewHolder viewHolder,

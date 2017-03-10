@@ -59,12 +59,16 @@ public class FirebaseSavedAndHappeningEventViewHolder extends RecyclerView.ViewH
         // When an event in the list is clicked, we send that event to the Event Detail Activity where it is
         // handled by the Event Detail Fragment.
         final ArrayList<Event> events = new ArrayList<>();
+        final ArrayList<String> keys = new ArrayList<>();
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String key = snapshot.getKey();
+                    keys.add(key);
                     events.add(snapshot.getValue(Event.class));
                 }
 
@@ -72,8 +76,11 @@ public class FirebaseSavedAndHappeningEventViewHolder extends RecyclerView.ViewH
 
                 Intent intent = new Intent(mContext, EventDetailActivity.class);
                 intent.putExtra("position", itemPosition);
+                intent.putExtra("keys", Parcels.wrap(keys));
                 intent.putExtra("events", Parcels.wrap(events));
 
+                // The activity started is the EventDetailActivity, which builds
+                // an EventDetailFragment
                 mContext.startActivity(intent);
             }
 

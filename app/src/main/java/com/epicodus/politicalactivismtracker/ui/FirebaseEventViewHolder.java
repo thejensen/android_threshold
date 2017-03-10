@@ -71,6 +71,8 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String key = snapshot.getKey();
                     Log.d(TAG, "Key for this event is...: " + key);
+                    // This is the beginning of the journey for the keys, they are needed in the Event Detail Fragment
+                    // to update the global event counter when the user saves the event to 'their' events
                     keys.add(key);
                     events.add(snapshot.getValue(Event.class));
                 }
