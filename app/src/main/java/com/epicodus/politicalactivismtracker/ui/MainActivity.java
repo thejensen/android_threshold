@@ -11,8 +11,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
@@ -21,18 +21,18 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+
+import static com.epicodus.politicalactivismtracker.R.drawable.resist;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findActionsButton) Button mFindActionsButton;
     @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
     @Bind(R.id.mySavedActionsButton) Button mMySavedActionsButton;
-    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    @Bind(R.id.progress_bar_theactualbar) ProgressBar mProgressBar;
-    private DatabaseReference mActionReference;
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    @Bind(R.id.actionImageView) ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSubmitNewActionInputButton.setOnClickListener(this);
         mMySavedActionsButton.setOnClickListener(this);
 
-        mProgressBar.setVisibility(View.VISIBLE);
-
-        mActionReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
-        setUpFirebaseAdapter();
+        Picasso.with(this)
+                .load(R.drawable.resist)
+                .into(mImageView);
     }
 
     @Override
@@ -92,25 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
-    }
-
-    private void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseEventViewHolder>(Event.class, R.layout.event_list_item, FirebaseEventViewHolder.class, mActionReference) {
-            @Override
-            protected void populateViewHolder(FirebaseEventViewHolder viewHolder, Event model, int position) {
-                viewHolder.bindEvent(model);
-                mProgressBar.setVisibility(View.GONE);
-            }
-        };
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseAdapter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mFirebaseAdapter.cleanup();
     }
 }
 

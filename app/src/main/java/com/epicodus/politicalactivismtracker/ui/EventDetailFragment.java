@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +34,6 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class EventDetailFragment extends Fragment implements View.OnClickListener {
-    private static final String TAG = EventDetailFragment.class.getSimpleName();
     @Bind(R.id.actionNameTextView) TextView mActionNameLabel;
     @Bind(R.id.locationTextView) TextView mLocationLabel;
     @Bind(R.id.linkTextView) TextView mLinkLabel;
@@ -63,6 +61,9 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstance);
         mEvent = Parcels.unwrap(getArguments().getParcelable("event"));
 
+        // Checks to see if the name of the event they're looking at matches the name of any event
+        // saved in their saved events in the database. It has to be 'on create' because every time
+        // event is saved, the app refreshes, yikes!
         isEventSaved();
     }
 
@@ -93,10 +94,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
-            //TODO: Validate the user's saved event isn't in firebase instead of using this hacky counter.
-
             if (eventIsSaved) {
-                Toast.makeText(getContext(), "You're going! See 'My Events'", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You're going! Go see 'My Events'", Toast.LENGTH_SHORT).show();
             }
             else {
                 mEvent.setCountActual(mEvent.getCountActual() + 1);
@@ -144,7 +143,6 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         ref.orderByChild("name").equalTo(mEvent.getName()).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                Log.d(TAG, "My children.. matches in the database " + dataSnapshot.getKey());
                 if (dataSnapshot.getKey() == null) {
                     eventIsSaved = false;
                 }
@@ -173,7 +171,6 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
 
             }
         });
-
     }
 
 }

@@ -31,61 +31,104 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Join!"
-            android:textSize="30sp"
-            android:id="@+id/findActionsButton"
-            android:textColor="@android:color/white"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-smallcaps"
-            android:layout_weight="1"
-            android:minHeight="0dp"
-            android:background="@color/colorAccent"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
 
-        <Button
-            android:text="My Events"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/mySavedActionsButton"
-            android:textSize="30sp"
-            android:textColor="@android:color/white"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-smallcaps"
-            android:layout_weight="1"
-            android:minHeight="0dp"
-            android:background="@color/colorAccent"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"/>
+
     </LinearLayout>
 
     <FrameLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="20dp">
+        android:layout_height="wrap_content">
 
-        <ProgressBar
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress_bar_theactualbar"
-            style="@android:style/Widget.ProgressBar.Large"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center_vertical" />
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_cast_white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="408dp"
-            android:paddingTop="50dp"/>
+            <Button
+                android:text="I'd Support That"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/mySavedActionsButton"
+                android:textSize="30sp"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:minHeight="0dp"
+                android:background="@color/colorAccent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Browse Events"
+                android:textSize="30sp"
+                android:id="@+id/findActionsButton"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:minHeight="0dp"
+                android:background="@color/colorAccent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginBottom="5dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="459dp"
+                android:background="@android:color/white"
+                android:paddingTop="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Threshold is a place where people with a vision for an event to connect with people who want to show up. \n \n Add, browse, join. \n \n Each event has a necessary number of participants, that, when reached, will activate the event!"
+                    android:id="@+id/aboutTextView"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:layout_marginBottom="14dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"/>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:id="@+id/actionImageView"
+                    android:src="@drawable/resist"
+                    android:scaleType="centerCrop"
+                    android:layout_marginBottom="69dp"
+                    android:layout_above="@+id/aboutTextView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome to Threshold"
+                    android:id="@+id/welcomeTextView"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:layout_marginBottom="22dp"
+                    android:layout_above="@+id/aboutTextView"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
     </FrameLayout>
 
 </RelativeLayout>
+
