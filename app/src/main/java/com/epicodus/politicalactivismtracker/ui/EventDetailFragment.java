@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class EventDetailFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = EventDetailFragment.class.getSimpleName();
     @Bind(R.id.actionNameTextView) TextView mActionNameLabel;
     @Bind(R.id.locationTextView) TextView mLocationLabel;
     @Bind(R.id.linkTextView) TextView mLinkLabel;
@@ -87,12 +89,20 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
-            clickCounter += 1;
+            clickCounter ++;
 
             //TODO: Validate the user's saved event isn't in firebase instead of using this hacky counter.
             if (clickCounter == 1) {
                 mEvent.setCountActual(mEvent.getCountActual() + 1);
 
+                // Update counter on the global event
+                DatabaseReference eventRef = FirebaseDatabase
+                        .getInstance()
+                        .getReference(Constants.FIREBASE_CHILD_ACTIONS);
+                eventRef.removeValue();
+                eventRef.push().setValue(mEvent);
+
+                // Save event to user's account
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String uid = user.getUid();
 
@@ -112,7 +122,7 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(getContext(), "You're going! Go to 'My Events' to confirm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You're going! See 'My Events'", Toast.LENGTH_SHORT).show();
             }
         }
         if (v == mLinkLabel) {
@@ -120,6 +130,7 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
                     Uri.parse(mEvent.getLink()));
             startActivity(webIntent);
         }
-
     }
+
+    private
 }

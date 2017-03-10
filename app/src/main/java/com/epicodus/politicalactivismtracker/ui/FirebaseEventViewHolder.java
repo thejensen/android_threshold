@@ -42,13 +42,8 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
     public void bindEvent(Event event) {
         TextView eventNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
         TextView eventLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
-//        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
-//        TextView actionDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
-//        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.descriptionTextView);
         ImageView eventImageView = (ImageView) mView.findViewById(R.id.actionImageView);
-//        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.causeTextView);
         TextView eventActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
-//        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
 
         Picasso.with(mContext)
                 .load(event.getImageUrl())
@@ -58,12 +53,7 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
 
         eventNameTextView.setText(event.getName());
         eventLocationTextView.setText(event.getLocation());
-//        actionLinkTextView.setText(event.getLink());
-//        actionDateTextView.setText(event.getDate());
-//        actionDescriptionTextView.setText(event.getDescription());
-//        actionCauseTextView.setText(event.getCategoryCause());
         eventActionTextView.setText(event.getCategoryAction());
-//        actionPriceTextView.setText(event.getPrice());
     }
 
     @Override
@@ -80,6 +70,7 @@ public class FirebaseEventViewHolder extends RecyclerView.ViewHolder implements 
 
                 int itemPosition = getLayoutPosition();
 
+                // Send events to the EventDetailActivity / EventDetailFragment
                 Intent intent = new Intent(mContext, EventDetailActivity.class);
                 intent.putExtra("position", itemPosition);
                 intent.putExtra("events", Parcels.wrap(events));
