@@ -42,13 +42,8 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
     public void bindAction(Event event) {
         TextView actionNameTextView = (TextView) mView.findViewById(R.id.actionNameTextView);
         TextView actionLocationTextView = (TextView) mView.findViewById(R.id.locationTextView);
-//        TextView actionLinkTextView = (TextView) mView.findViewById(R.id.linkTextView);
-//        TextView actionDateTextView = (TextView) mView.findViewById(R.id.dateTextView);
-//        TextView actionDescriptionTextView = (TextView) mView.findViewById(R.id.descriptionTextView);
         ImageView actionImageView = (ImageView) mView.findViewById(R.id.actionImageView);
-//        TextView actionCauseTextView = (TextView) mView.findViewById(R.id.causeTextView);
         TextView actionActionTextView = (TextView) mView.findViewById(R.id.actionCategoryTextView);
-//        TextView actionPriceTextView = (TextView) mView.findViewById(R.id.priceTextView);
 
         Picasso.with(mContext)
                 .load(event.getImageUrl())
@@ -58,13 +53,7 @@ public class FirebaseSavedEventViewHolder extends RecyclerView.ViewHolder implem
 
         actionNameTextView.setText(event.getName());
         actionLocationTextView.setText(event.getLocation());
-//        actionLinkTextView.setText(event.getLink());
-//        actionDateTextView.setText(event.getDate());
-//        actionDescriptionTextView.setText(event.getDescription());
-//        actionCauseTextView.setText(event.getCategoryCause());
         actionActionTextView.setText(event.getCategoryAction());
-//        actionPriceTextView.setText(event.getPrice());
-
     }
 
     @Override

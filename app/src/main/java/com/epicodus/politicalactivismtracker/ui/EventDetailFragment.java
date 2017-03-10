@@ -19,6 +19,9 @@ import com.epicodus.politicalactivismtracker.R;
 import com.epicodus.politicalactivismtracker.models.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -44,9 +47,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Bind(R.id.saveActionButton) Button mSaveActionButton;
     @Bind(R.id.countActualTextView) TextView mCountActualTextView;
     @Bind(R.id.countThresholdTextView) TextView mCountThresholdTextView;
-    int clickCounter = 0;
-
     private Event mEvent;
+    private boolean eventIsSaved;
 
     public static EventDetailFragment newInstance(Event event) {
         EventDetailFragment eventDetailFragment = new EventDetailFragment();
@@ -60,6 +62,8 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         mEvent = Parcels.unwrap(getArguments().getParcelable("event"));
+
+        isEventSaved();
     }
 
     @Override
@@ -89,13 +93,15 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         if (v == mSaveActionButton) {
-            clickCounter ++;
-
             //TODO: Validate the user's saved event isn't in firebase instead of using this hacky counter.
-            if (clickCounter == 1) {
+
+            if (eventIsSaved) {
+                Toast.makeText(getContext(), "You're going! See 'My Events'", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 mEvent.setCountActual(mEvent.getCountActual() + 1);
 
-                // Update counter on the global event
+                // Update counter on the global event... actually totally delete and readd the event :/
                 DatabaseReference eventRef = FirebaseDatabase
                         .getInstance()
                         .getReference(Constants.FIREBASE_CHILD_ACTIONS);
@@ -121,9 +127,6 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
 
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
             }
-            else {
-                Toast.makeText(getContext(), "You're going! See 'My Events'", Toast.LENGTH_SHORT).show();
-            }
         }
         if (v == mLinkLabel) {
             Intent webIntent = new Intent(Intent.ACTION_VIEW,
@@ -132,5 +135,45 @@ public class EventDetailFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    private
+    public void isEventSaved() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_MY_CHILD_ACTIONS).child(uid);
+
+        ref.orderByChild("name").equalTo(mEvent.getName()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+                Log.d(TAG, "My children.. matches in the database " + dataSnapshot.getKey());
+                if (dataSnapshot.getKey() == null) {
+                    eventIsSaved = false;
+                }
+                else {
+                    eventIsSaved = true;
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 }
