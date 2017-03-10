@@ -15,24 +15,27 @@
         <activity android:name=".ui.EventDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity" />
+                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity"/>
         </activity>
         <activity android:name=".ui.CreateAccountActivity"/>
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".ui.EventListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity" />
+                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity"/>
         </activity>
         <activity android:name=".ui.SavedEventListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity" />
+                android:value="com.epicodus.politicalactivismtracker.ui.MainActivity"/>
+        </activity>
+        <activity android:name=".ui.SavedAndHappeningEventListActivity">
         </activity>
     </application>
 

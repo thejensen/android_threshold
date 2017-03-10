@@ -4,34 +4,25 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
-import com.epicodus.politicalactivismtracker.Constants;
 import com.epicodus.politicalactivismtracker.R;
-import com.epicodus.politicalactivismtracker.models.Event;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.epicodus.politicalactivismtracker.R.drawable.resist;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.findActionsButton) Button mFindActionsButton;
     @Bind(R.id.submitNewActionInputButton) Button mSubmitNewActionInputButton;
     @Bind(R.id.mySavedActionsButton) Button mMySavedActionsButton;
+    @Bind(R.id.thresholdSavedEventsButton) Button mThresholdSavedEventsButton;
     @Bind(R.id.actionImageView) ImageView mImageView;
 
     @Override
@@ -46,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFindActionsButton.setOnClickListener(this);
         mSubmitNewActionInputButton.setOnClickListener(this);
         mMySavedActionsButton.setOnClickListener(this);
+        mThresholdSavedEventsButton.setOnClickListener(this);
 
         Picasso.with(this)
                 .load(R.drawable.resist)
@@ -64,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (v == mMySavedActionsButton) {
             Intent intent = new Intent(MainActivity.this, SavedEventListActivity.class);
+            startActivity(intent);
+        }
+        if (v == mThresholdSavedEventsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedAndHappeningEventListActivity.class);
             startActivity(intent);
         }
     }
