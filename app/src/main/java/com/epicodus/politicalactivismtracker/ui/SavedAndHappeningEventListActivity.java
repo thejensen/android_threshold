@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 
 public class SavedAndHappeningEventListActivity extends AppCompatActivity {
 
+    private static final String TAG = SavedAndHappeningEventListActivity.class.getSimpleName();
     private DatabaseReference mEventReference;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
@@ -59,9 +60,9 @@ public class SavedAndHappeningEventListActivity extends AppCompatActivity {
     }
 
     private void setUpFirebaseAdapter() {
+        // Send the list adapter the info from the user's list of events that they saved.
         mFirebaseAdapter = new FirebaseRecyclerAdapter<Event, FirebaseSavedAndHappeningEventViewHolder>
-                (Event.class, R.layout.event_list_item, FirebaseSavedAndHappeningEventViewHolder.class,
-                        mEventReference) {
+                (Event.class, R.layout.event_list_item, FirebaseSavedAndHappeningEventViewHolder.class, mEventReference) {
 
             @Override
             protected void populateViewHolder(FirebaseSavedAndHappeningEventViewHolder viewHolder,

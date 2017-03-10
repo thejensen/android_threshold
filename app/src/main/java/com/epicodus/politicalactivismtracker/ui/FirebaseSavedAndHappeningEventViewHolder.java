@@ -22,6 +22,7 @@ import org.parceler.Parcels;
 import java.util.ArrayList;
 
 public class FirebaseSavedAndHappeningEventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static final String TAG = FirebaseSavedAndHappeningEventViewHolder.class.getSimpleName();
     public static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
@@ -54,6 +55,9 @@ public class FirebaseSavedAndHappeningEventViewHolder extends RecyclerView.ViewH
 
     @Override
     public void onClick(View v) {
+
+        // When an event in the list is clicked, we send that event to the Event Detail Activity where it is
+        // handled by the Event Detail Fragment.
         final ArrayList<Event> events = new ArrayList<>();
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_ACTIONS);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -77,6 +81,7 @@ public class FirebaseSavedAndHappeningEventViewHolder extends RecyclerView.ViewH
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+
     }
 }
 
