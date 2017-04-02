@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.newrelic.agent.android.NewRelic;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,6 +40,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+        NewRelic.withApplicationToken(
+                "AAf740b69ade456c94ced170a2c19c7c22f0d6a53c"
+        ).start(this.getApplication());
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.actionbar);
